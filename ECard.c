@@ -3,56 +3,21 @@
 #include <stdio.h>
 #include <time.h>
 char side;
-char cardSelect(void);
 int citizens = 4;
-int compare(char p1, char p2);
-int main(void){
-	setup();
-	srand(time(NULL));
-	char eC, sC;
-	while(1){
-	int aS = rand()  %( citizens + 1);
-	if (side == 'E'){
-		eC = cardSelect();	
-		sC = (aS == 0) ? 'S' : 'C'	;
-	}
-	else{
-		eC = (aS == 0) ? 'E' : 'C';
-		sC = cardSelect();
 
-	}
-	int res = (compare(eC, sC));//cardSelect();
-	if (res == 0){
-		printf("%s", "It's a draw! \n");
-	}
-	else if (res == 1){
-		printf("%s", "The Emperor wins! \n");
-		break;
-	}
-	else{
-		printf("%s", "The Slave wins! \n");
-		break;
-	}
-
-	}
-	return EXIT_SUCCESS;
-}
 int compare(char p1, char p2){
 	
-	//Both Citizens
 	if (p1 == p2){
 		return 0;
 	}
-	//Emperor Slave
-	else if (p1 == 'E' && p2 == 'S'){//Slave Wins
+	else if (p1 == 'E' && p2 == 'S'){
 		return -1;
 	}
-	//Emperor Citizen
-	else {//Emperor Wins
+	else{
 		return 1;
 	}	
 }
-int setup(void){
+void setup(void){
 	side = 'Z';
 	citizens = 4;
 	int validSelection = 0;
@@ -78,6 +43,7 @@ int setup(void){
 	}
 
 }
+/* */
 char cardSelect(void){
 	int validSelection = 0;
 	char card;
@@ -104,4 +70,35 @@ char cardSelect(void){
 
 	}
 	return card;
+}
+int main(void){
+	setup();
+	srand(time(NULL));
+	char eC, sC;
+	while(1){
+	int aS = rand()  %( citizens + 1);
+	if (side == 'E'){
+		eC = cardSelect();	
+		sC = (aS == 0) ? 'S' : 'C'	;
+	}
+	else{
+		eC = (aS == 0) ? 'E' : 'C';
+		sC = cardSelect();
+
+	}
+	int res = (compare(eC, sC));
+	if (res == 0){
+		printf("%s", "It's a draw! \n");
+	}
+	else if (res == 1){
+		printf("%s", "The Emperor wins! \n");
+		break;
+	}
+	else{
+		printf("%s", "The Slave wins! \n");
+		break;
+	}
+
+	}
+	return EXIT_SUCCESS;
 }
