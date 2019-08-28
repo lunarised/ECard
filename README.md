@@ -7,7 +7,7 @@ Kaiji ECard Written in C
 
 ## Bugs
 - Let me know!
-
+- Fair play **COULD** be fairer
 ## Intended features
 - Multiplayer across LAN
 - Potentially a scoreboard
