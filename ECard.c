@@ -1,10 +1,17 @@
+/* Basic ECard Implementation in C
+ *@author James McKenzie
+ *@edited 2019-08-28
+ */
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <time.h>
 char side;
 int citizens = 4;
-
+/*Method to compare the cards
+ *@param p1: The Emperors Card Choice
+ *@param p2: The Slaves Card Choice
+ *@return 0 if draw, 1 if emperor wins, -1 if slave wins */
 int compare(char p1, char p2){
 	
 	if (p1 == p2){
@@ -17,45 +24,56 @@ int compare(char p1, char p2){
 		return 1;
 	}	
 }
+/* Sets up the base game state, and gets the player to pick a side */
 void setup(void){
 	side = 'Z';
 	citizens = 4;
 	int validSelection = 0;
 	while (validSelection == 0){
-		printf("%s", "What side do you wish to play? Emperor or Slave?\n");
+		printf("%s", 
+		"What side do you wish to play? Emperor or Slave?\n");
 		scanf(" %c", &side);
 		if (toupper(side) == 'S' || toupper(side) == 'E'){
 			validSelection = 1;
 		}
 		else{
 			printf("%c%s", side, "d\n");
-			printf("%s", "Invalid Selection. Please choose again! \n");
+			printf("%s", \
+			"Invalid Selection. Please choose again! \n");
 		}
 
 	}
 	side = toupper(side);
 	if (side == 'S'){
-		printf("%s", "You have chosen to play with the slave! \n");
+		printf("%s", \
+		"You have chosen to play with the slave! \n");
 		
 	}else{
 
-		printf("%s", "You have chosen to play with the emperor! \n");
+		printf("%s", "\
+		You have chosen to play with the emperor! \n");
 	}
 
 }
-/* */
+/* Gets a player to select a card
+ *@return The Character Value associated with the chosen card
+ */
 char cardSelect(void){
 	int validSelection = 0;
 	char card;
 	while(validSelection == 0){
-		printf("%s", "Select your card, using C for Citizen, S for slave or E for emperor: ");
+		printf("%s", 
+		"Select your card, using C for Citizen," \
+		"S for slave or E for emperor: ");
 		scanf(" %c", &card);
 		card = toupper(card);
 		if (card == 'S' || card == 'E' || card == 'C'){
 				
 		
-			if ((((card == 'S' && side == 'E')||(card == 'E' && side == 'S')))){
-			printf("%s", "You cant use your opponents cards!\n");
+			if ((((card == 'S' && side == 'E')||
+			(card == 'E' && side == 'S')))){
+				printf("%s",\
+				"You cant use your opponents cards!\n");
 			}	
 			else if(card == 'C' && citizens == 0){
 			printf("%s", "You have no more citizen cards\n");
