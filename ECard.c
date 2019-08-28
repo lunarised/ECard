@@ -1,11 +1,35 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <time.h>
 char side;
+char cardSelect(void);
+int compare(char p1, char p2);
 int main(void){
-	printf("%s", "Howdy");
 	setup();
-	cardSelect();
+	srand(time(NULL));
+	int aS = rand()  % 5;
+	char eC, sC;
+	if (side == 'E'){
+		eC = cardSelect();	
+		sC = (aS == 0) ? 'S' : 'C'	;
+	}
+	else{
+		eC = (aS == 0) ? 'E' : 'C';
+		sC = cardSelect();
+
+	}
+	int res = (compare(eC, sC));//cardSelect();
+	if (res == 0){
+		printf("%s", "It's a draw! \n");
+	}
+	else if (res == 1){
+		printf("%s", "The Emperor wins! \n");
+	}
+	else{
+		printf("%s", "The Slave wins! \n");
+	}
+	printf("%d %s", aS, "Fool!");	
 	return EXIT_SUCCESS;
 }
 int compare(char p1, char p2){
@@ -14,7 +38,7 @@ int compare(char p1, char p2){
 		return 0;
 	}
 	//Emperor Slave
-	else if (p1 == 'e' && p2 == 's'){//Slave Wins
+	else if (p1 == 'E' && p2 == 'S'){//Slave Wins
 		return -1;
 	}
 	//Emperor Citizen
@@ -47,24 +71,23 @@ int setup(void){
 	}
 
 }
-void cardSelect(void){
+char cardSelect(void){
 	int validSelection = 0;
 	char card;
 	while(validSelection == 0){
-	printf("%s", "Select your card, using C for Citizen, S for slave or E for emperor");
-	scanf(" %c", &card);
-	card = toupper(card);
-	if (card == 'S' || card == 'E' || card == 'C'){
-		printf("%s" , "Moo");
-		if (!((card == 'S' && side == 'E')||(card == 'E' && side == 'S'))){
-			printf("%s", "Meow");
-			validSelection = 1;
-	}
-		else{
-			"Invalid Selection";
+		printf("%s", "Select your card, using C for Citizen, S for slave or E for emperor");
+		scanf(" %c", &card);
+		card = toupper(card);
+		if (card == 'S' || card == 'E' || card == 'C'){
+			printf("%s" , "Moo");
+			if (!((card == 'S' && side == 'E')||(card == 'E' && side == 'S'))){
+				printf("%s", "Meow");
+				validSelection = 1;
+			}
+			else{
+				"Invalid Selection";
+			}
 		}
 	}
-//	 (toupper(side) ==  )
-	}
-//	return 'e';
+	return card;
 }
