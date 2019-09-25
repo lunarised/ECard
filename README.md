@@ -27,3 +27,9 @@ Both players select a card and place it facedown. Then reveal at the same time.
 
 Once a Slave beats the Emperor, Players swap sides
 Civilians that were played, resulting in a draw DO NOT go back to your hand until someone wins the round
+
+
+3 Player ECard will be made sometime soon (ESS)
+Additional Rules
+- Slaves Team Up
+- Dual Slaves lose
