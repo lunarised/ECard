@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 import random
 def compare(eC, sC):
       #  print (eC+" "+ sC)
@@ -86,4 +86,5 @@ for x in range(10000):
 
 print(p1Wins)
 print(p2Wins)
+print(abs(p1Wins - p2Wins)
 
